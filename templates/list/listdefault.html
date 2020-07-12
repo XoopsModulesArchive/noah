@@ -1,0 +1,82 @@
+<{* START DEFAULT FORM THIS SHOULD BE LEFT HERE *}>
+<{* IF you want to edit layout of this template *}>
+<{* The HTML below should only be used as a sample *}>
+<{* for creating your own custom templates *}>
+
+
+<table cellpadding="0" cellspacing="1">
+<tr>
+<td class="head" >
+<nobr><a href="<{$xoops_url}>/modules/<{$mod_dir}>/admin/listform.php?op=<{$page.info.group_name}>&p=<{$page.paginate.page}>"><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_edit.gif">Edit All</a>&nbsp;&nbsp;
+</nobr>
+</td>
+<td class="even"><span style="font-size: 9px"><b><{ $smarty.const._NA_DEFAULTLIST_NOTICE }></b> <{ $smarty.const._NA_DEFAULTLIST_MSG }></span></td>
+</tr>
+</table>
+<{if $page.paginate }>
+	<{include file="db:noah_paginate.html"}>
+<{/if}>
+<table width="100%" class="outer" cellpadding="3" cellspacing="1" border="0">
+<tr>
+	<td class="even">&nbsp;  </td>
+ <{foreach item=col from=$page.columns.col }>
+ 	<td class="even"><nobr><{$col.sort_link}><b><{ $col.fieldlabel }></b></nobr></td>
+ <{/foreach}>
+</tr>
+<{foreach item=row from=$page.list }>
+	<tr class="<{cycle values='odd,'}>">
+		<td><nobr>
+			<a href="<{$xoops_url}>/modules/<{$mod_dir}>/admin/item.php?op=<{$page.info.name}>&pfunc=open&id=<{$row.rowid}>"><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_open.gif" border="0"></a>&nbsp;
+			<a href="<{$xoops_url}>/modules/<{$mod_dir}>/admin/form.php?op=<{$page.info.name}>&pfunc=edit&id=<{$row.rowid}>"><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_edit.gif"></a>&nbsp;
+			<a href="<{$xoops_url}>/modules/<{$mod_dir}>/admin/trash.php?op=<{$page.info.name}>&pfunc=trash&id=<{$row.rowid}>"><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_trash.gif"></a>&nbsp;
+			</nobr>
+		</td>
+	<{foreach key=key item=item from=$row }>
+		<{if $key != 'rowid' && $key != 'fclick' && $key != 'fvalue' }>
+		<td>
+        <{if $row.fclick }>
+        <a href="<{$xoops_url}>/modules/<{$mod_dir}>/admin/nlist.php?op=<{$page.info.name}>&filter=<{$key}>&fval=<{$row.fvalue.$key}>"><u><{$item}></u></a>        
+        <{else}>
+        <{$item}>
+        <{/if}>
+        </td>
+		<{/if}>
+	<{/foreach}>
+	</tr>
+<{/foreach}>
+</table>
+<{if $page.paginate }>
+	<{include file="db:noah_paginate.html"}>
+<{/if}>
+&nbsp;
+
+<{if $page.missinggroups }>
+<table width="100%" cellpadding="0" cellspacing="1">
+<tr>
+<td class="head" >
+<b><{ $smarty.const._NA_MISSINGGROUPS_NOTICE }></b>
+</td>
+<td class="even"><span style="font-size: 9px"> <{ $smarty.const._NA_MISSINGGROUPS_MSG }></span></td>
+</tr>
+</table>
+<table class="outer" width='100%' cellspacing="1" cellpadding="5">
+  <tr>
+ <{counter start=0 assign=table_count}>
+ <{foreach item=table from=$page.missinggroups }>
+ <{counter}>
+  <td class="<{cycle values='odd,even'}>">
+		<a href="<{$xoops_url}>/modules/<{$mod_dir}>/admin/form.php?op=sysgroups&pfunc=add&lock=table_name&lockv=<{$table}>"><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_add.gif" align="absmiddle">&nbsp;<{$table}></a>
+ </td>
+ 	<{if $table_count eq 2 }>
+		</tr><tr>
+	 	<{counter start=0 assign=table_count}>
+	<{/if}>
+
+	<{/foreach}> 
+  
+  </td>
+ </tr>
+</table>
+<{/if}>
+
+

@@ -1,0 +1,123 @@
+
+<table width="75%" align="center">
+<tr><td>
+<h2><{ $page.title }></h2>
+
+<p>This page can be loaded using the <i>Navigation Name</i> <b><{$page.navname}></b>. The <i>Navigation Name</i> is passed
+ in the url string just like the one below </p>
+ 
+ <pre>
+ 	<a href="<{$xoops_url}>/modules/<{$mod_dir}>/page.php?navname=<{$page.navname}>"><{$xoops_url}>/modules/<{$mod_dir}>/page.php?navname=<{$page.navname}></a>
+ </pre>
+ 
+ <p>This page has loaded the template file <b><{ $pagetpl }></b>. This template is located in the folder <i>noah/templates/page/</i>. If you wanted to change the look/feel of this page you can edit this template using the Xoops Control panel. <b>Or</b> you can upload a new html template page to the same folder and then assign your new file to this page using the NoAh admin. The source for this sample template file along with source from <{$page.script}> can be used as a blue print for creating custom pages from scratch.</p>
+ 
+ <h3>Adding Values to the <i>$page</i> Array</h3>
+ 
+  <p>All about the <b><i>$page</i></b> array ! All dynamic content provided on this page has been assigned to the SMARTY array <i>$page</i>. Here is a set of the default data loaded from the page array.</p>
+   
+   <table width="100%" align="center" class="outer" cellpadding="3" cellspacing="1"> 
+   <tr>
+   <td colspan="2">All default values assigned to smarty array <b>$page</b></td>
+   </tr>
+   <tr class="head">
+   <td>Smarty Tag</td><td>Current Value</td>
+   </tr>
+   <{foreach key=key item=value from=$page}>
+   <tr class="<{cycle values='odd,even'}>">
+   <td width="120"><b>$page.<{$key}></b></td><td><{$value}></td>
+   </tr>
+   <{/foreach}>
+   </table>
+   
+  <p>The <b><i>$page.content</i></b> smarty tag represent a multidimensional array. The purpose of this array is to hold dynamic content which has been assigned to this page by features within the no-ah admin, or by a custom php script.</p>
+
+  <p>This sample page also uses the custom PHP script <b><{ $page.script }></b>. This file is located in the folder <i>noah/page/</i> and is simply used to add or supliment information contained in the multidimensional array <i>$page.content</i>. </p>
+
+   <table width="100%" align="center" class="outer" cellpadding="3" cellspacing="1"> 
+   <tr>
+   <td colspan="2">All values assigned to SMARTY array <b>$page.content</b> by <b><{$page.script}></b>
+   <pre>
+	// view source of <{$page.script}> for more details 
+	$page['content']['txtstring'] = 'This is my sample txt string';
+	$page['content']['today'] = date('D, M g Y ', time());
+	$page['content']['hello'] = sampleHelloWorld();
+
+	function sampleHelloWorld()	{
+		return 'Hello World';
+	}   
+   </pre>
+   </td>
+   </tr>
+   <tr class="head">
+   <td>Smarty Tag</td><td>Current Value</td>
+   </tr>
+   <{foreach key=key item=value from=$page.content}>
+   <tr class="<{cycle values='odd,even'}>">
+   <td width="120"><b>$page.content.<{$key}></b></td><td><{$value}></td>
+   </tr>
+   <{/foreach}>
+   </table>
+
+ <h3>Accessing NoAh Content</h3>
+
+  <p>Using the <b><i>$page.content</i></b> convention is completely optional. When building custom NoAh pages you may find it more convienient to just create your own names for SMARTY variables. Below is an example of how to use one of NoAh handy functions for fetching actual content from a NoAh group and displaying the results in our template. When info is requested from NoAh it is typically returned as a multidimensional array containing all the info you might neeed to display the data effectively. You can assing the entire set of data to your smarty template or optionally make use of it in your actual php script for further manipulation</p>
+  
+   <table width="100%" align="center" class="outer" cellpadding="3" cellspacing="1"> 
+   <tr>
+   <td colspan="2">
+   All values assigned to SMARTY array <b>$myarray</b> by <b><{$page.script}></b>
+   <pre>
+	// view source of <{$page.script}> for more details 
+	$noAh = new NoAhPage('syslists');
+	$myarray = $noAh->getListData();
+	$xoopsTpl->assign( 'myarray', $myarray );
+   </pre>
+   </td>
+   </tr>
+   <tr class="head">
+   <td>Smarty Tag</td><td>Current Value</td>
+   </tr>
+   <{foreach key=key item=item from=$myarray.list}>
+ 	<{foreach key=skey item=sitem from=$item}>
+   <tr class="<{cycle values='odd,even'}>"><td><b>$myarray.list.<{$key}>.<{$skey}></b></td><td><{$sitem}></td></tr>
+	<{/foreach}>
+   <{/foreach}>
+   </table>
+   
+   <h3>Rendering a NoAh Form</h3>
+    
+     <p>Your custom PHP pages can easily use NoAh's main class file for generating forms for different content groups. Here is an example form for of the content group used to define the features of a NoAh page similar to this one. </p>
+	 
+   <table width="100%" align="center" class="outer" cellpadding="3" cellspacing="1"> 
+   <tr>
+   <td colspan="2">
+   Note: this example doesn't include handling form submissions, this example shows how a form is created and then accessed with smarty variables so layout can be completely customized.
+   <pre>
+	// view source of <{$page.script}> for more details 
+	$noAh = new NoAhPage('pages');
+	$myForm = new XoopsSimpleForm( 'Form Title', 'sampleform', 'sample.php', 'POST' );
+	$noAh->getFormView(&$myForm, $values=array());;
+	$noAh->formFinalize(&$myForm);
+	$myForm->assignByName($xoopsTpl);
+   </pre>
+   </td>
+   </tr>
+   <tr class="head">
+   <td>Smarty Tag</td><td>HTML Output</td>
+   </tr>
+   <{foreach key=key item=item from=$sampleform.elements}>
+   <{cycle values='odd,even' assign='myclass'}>
+   <tr class="<{$myclass}>"><td><b>$sampleform.elements.<{$key}>.caption</b></td><td><{$item.caption}></td></tr>
+   <tr class="<{$myclass}>"><td><b>$sampleform.elements.<{$key}>.body</b></td><td><{$item.body}></td></tr>
+   <{/foreach}>
+   </table>
+	 
+   
+   </td></tr>
+   </table>
+
+  
+  
+  
+  

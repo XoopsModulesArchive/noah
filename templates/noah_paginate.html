@@ -1,0 +1,13 @@
+<table class="odd" width='100%' cellspacing="1">
+ <tr><td>
+  <{if $page.paginate.page > 1 }>
+  	<a href="<{$page.paginate.link.first_page}>" title="view the first page"><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_first.gif"></a>
+  <{else}><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_first_off.gif"><{/if}>
+  page <{$page.paginate.page}> of <a href="<{$page.paginate.link.last_page}>" title="view the last page"><{$page.paginate.count}></a> | <{if $page.paginate.filter_on}> found <{$total_matched}>/<{$total_items}> | <{/if}>showing <{$page.paginate.first_rec}>-<{$page.paginate.last_rec}> of <{$page.paginate.total_items}>
+  &nbsp; 
+  </td>
+  <td align="right">
+  <{if $page.paginate.page > 1 }>
+  	<a href="<{$page.paginate.link.first_page}>" title="view the first page"><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_first.gif"></a><{else}><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_first_off.gif"><{/if}>&nbsp;<{if $page.paginate.prev > 0}><a  href="<{$page.paginate.link.prev_page}>" title="view previous page"><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_prev.gif"></a><{else}><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_prev_off.gif"><{/if}>&nbsp;<{if $page.paginate.next > 0}><a  href="<{$page.paginate.link.next_page}>" title="view the next page"><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_next.gif"></a><{else}><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_next_off.gif"><{/if}>&nbsp;<{if $page.paginate.count > 1 and $page.paginate.count != $page.paginate.page}><a  href="<{$page.paginate.link.last_page}>" title="view the last page"><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_last.gif"></a><{else}><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_last_off.gif"><{/if}>
+ </td></tr>
+ </table>

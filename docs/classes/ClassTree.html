@@ -1,0 +1,139 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>HelpGenerator Menu</title>
+<link rel="stylesheet" type="text/css" href="styles/interface.css"/>
+<link rel="stylesheet" type="text/css" href="tools/xtree.css"/>
+<script src="tools/classTree.js"></script>
+</head>
+<body bgcolor="#FFFFFF" topmargin="1" leftmargin="1" rightmargin="1" bottommargin="1">
+<a href="FileTree.html">Files</a> - Classes: <a href="ClassTree.html">Tree</a> - <a href="ClassList.html">List</a> - <a href="FunctionList.html">Functions</a>
+<div class="separator"></div>
+<script language="Javascript">
+
+if (document.getElementById) {
+  var tree = new WebFXTree('Class Tree', 'tools/Legend.html');
+  tree.setBehavior('classic');
+  tree.openIcon = 'images/help-book.gif';
+  tree.icon = 'images/help-book.gif';
+
+
+
+	var classXoopsObject = new WebFXTreeItem('XoopsObject', 'class.XoopsObject.html');
+	classXoopsObject.openIcon = 'images/classGhost.gif';
+	classXoopsObject.icon = 'images/classGhost.gif';
+	tree.add(classXoopsObject);
+
+	
+
+
+	var classmyDB = new WebFXTreeItem('myDB', 'class.myDB.html');
+	classXoopsObject.add(classmyDB);
+
+
+	
+
+
+	var classNoAhPage = new WebFXTreeItem('NoAhPage', 'class.NoAhPage.html');
+	classXoopsObject.add(classNoAhPage);
+
+
+	
+
+
+	var classNoAhCommon = new WebFXTreeItem('NoAhCommon', 'class.NoAhCommon.html');
+	classNoAhPage.add(classNoAhCommon);
+
+
+	
+
+
+	var classNoAhDbDiscovery = new WebFXTreeItem('NoAhDbDiscovery', 'class.NoAhDbDiscovery.html');
+	classNoAhPage.add(classNoAhDbDiscovery);
+
+
+	
+
+
+	var classNoAhField = new WebFXTreeItem('NoAhField', 'class.NoAhField.html');
+	classNoAhPage.add(classNoAhField);
+
+
+	
+
+
+	var classNoAhForm = new WebFXTreeItem('NoAhForm', 'class.NoAhForm.html');
+	classNoAhPage.add(classNoAhForm);
+
+
+	
+
+
+	var classNoAhFormDirSelect = new WebFXTreeItem('NoAhFormDirSelect', 'class.NoAhFormDirSelect.html');
+	classNoAhForm.add(classNoAhFormDirSelect);
+
+
+	
+
+
+	var classNoAhFormProcess = new WebFXTreeItem('NoAhFormProcess', 'class.NoAhFormProcess.html');
+	classNoAhForm.add(classNoAhFormProcess);
+
+
+	
+
+
+	var classNoAhGroup = new WebFXTreeItem('NoAhGroup', 'class.NoAhGroup.html');
+	classNoAhPage.add(classNoAhGroup);
+
+
+	
+
+
+	var classNoAhList = new WebFXTreeItem('NoAhList', 'class.NoAhList.html');
+	classNoAhPage.add(classNoAhList);
+
+
+	
+
+
+	var classNoAhListForm = new WebFXTreeItem('NoAhListForm', 'class.NoAhListForm.html');
+	classNoAhPage.add(classNoAhListForm);
+
+
+	
+
+
+	var classNoAhSiteList = new WebFXTreeItem('NoAhSiteList', 'class.NoAhSiteList.html');
+	classNoAhPage.add(classNoAhSiteList);
+
+
+	
+
+
+	var classNoAhSitePage = new WebFXTreeItem('NoAhSitePage', 'class.NoAhSitePage.html');
+	classNoAhPage.add(classNoAhSitePage);
+
+
+	
+
+
+	var classNoAhTableConsume = new WebFXTreeItem('NoAhTableConsume', 'class.NoAhTableConsume.html');
+	classNoAhPage.add(classNoAhTableConsume);
+
+
+	
+
+	var classXoopsTabs = new WebFXTreeItem('XoopsTabs', 'class.XoopsTabs.html');
+	classXoopsTabs.openIcon = 'images/class.gif';
+	classXoopsTabs.icon = 'images/class.gif';
+	tree.add(classXoopsTabs);
+
+	  
+ 
+  document.write(tree);
+}
+</script>
+<div class="separator"></div>
+</body>
+</html>

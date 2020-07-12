@@ -1,0 +1,74 @@
+How to install No-Ah 0.8.7
+-------------------------------------
+
+=======
+1 - Overview
+
+No-Ah is a php/mysql module built to support the Xoops OO portal system. No-Ah lets you turn any table in the xoops database into a piece of manageable content group by storing metadata about your information and how it is organized. No-Ah then provides many ways to access your content along with the metadata which defines how it needs to be displayed and managed.
+
+Making use of the No-Ah API a module developer can quickly decrease their time to build modules and also the developer who is just getting started can easily create dynamic content with very little php.
+
+More information about Xoops can be found at www.xoops.org 
+
+1 - Downloading Files
+
+Download all of these files to a location on your computer. 
+
+	1.1 Xoops 2.0.7
+	 - http://www.xoops.org/general/download.php#xoops2
+
+	1.2 NoAh 0.8.7.zip
+	- http://dev.xoops.org/modules/xfmod/project/?xdb
+
+	1.3 XoopsForm Extensions - AssignByName Method
+	- http://dev.xoops.org/modules/xfmod/project/?xdb
+
+
+2 - Install Xoops 2.0.7
+
+The xoops files you downloaded will come with all the installation instructions you will need to get xoops up and running. Support for xoops can be found at www.xoops.org
+
+When you have successfully installed and configured your xoops site continue with step 3
+
+3 - Installing the AssignByName Method
+
+Extract the zip file downloaded in step 1. Upload it's contents into the /class folder in the root of your xoops web site.
+
+For example. Upload to the following where public_html/xoops/ is the  root folder for your xoops site. 
+ 
+	public_html/xoops/class/
+
+Note: It should be safe to overwrite existing xoops files. If you wish you can make a back up. Nothing is altered, files are only.
+
+4 - Upload the No-Ah module
+
+Extract NoAh_0.8.7.zip to your local computer. Extracted from the zip file you will find a folder called 'noah' upload this folder and all its contents to your xoops modules/ folder. 
+
+For example. Upload to the following where public_html/xoops/ is the root folder for your xoops site.
+	
+	public_html/xoops/modules/
+
+
+5 - Install No-Ah module
+
+	5.1 Log into your Xoops site and go to the admin control panel.
+
+	5.2 Go to ' System Admin -> Modules '
+
+	5.3 Find the No-Ah icon and click the install icon.
+
+	5.4 Follow the system prompts.
+
+6 - Try it out.
+
+From the NoAh tab menu click ' Content ' to see a list of all predefined content groups and to see a list of tables which can be turned into content groups. Just click the name of the table to begin defining it's meta data.
+
+To see a sample page showing how to make use of the NoAh api to access your content groups see
+
+	yourxoopsurl.com/modules/noah/page.php?navname=sample
+
+Where 'yourxoopsurl.com' is the address for your xoops site. The source code for this file is in /modules/noah/page/sample.php
+
+For support visit ...   http://noah.tetrasi.com/
+
+

@@ -1,0 +1,96 @@
+<{if $page.info.detail_tpl }>
+	<{include file=$page.info.detail_tpl }>
+<{/if}>
+
+<{* START DEFAULT HTML THIS SHOULD BE LEFT HERE *}>
+<{* IF you want to edit layout of this template *}>
+<{* The HTML below should only be used as a sample *}>
+<{* for creating your own custom templates *}>
+
+<{if ! $page.info.detail_tpl }>
+<table  cellpadding="0" cellspacing="1">
+<tr>
+<td class="head" >
+<nobr><a href="<{$xoops_url}>/modules/<{$mod_dir}>/admin/form.php?op=<{$page.info.group_name}>&pfunc=edit&id=<{$page.info.itemid}>"><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_edit.gif"> Edit</a> |
+<a href="<{$xoops_url}>/modules/<{$mod_dir}>/admin/trash.php?op=<{$page.info.group_name}>&id=<{$page.info.itemid}>"><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_trash.gif"> Delete</a> &nbsp;&nbsp</nobr>
+</td>
+<td class="even"><span style="font-size: 9px"><b><{ $smarty.const._NA_DEFAULTITEM_NOTICE }></b> <{ $smarty.const._NA_DEFAULTITEM_MSG }></span></td></tr>
+</table>
+<table cellpadding="4" cellspacing="1" class="outer" width="100%">
+<{foreach item=item key=field from=$page.item }>
+ <tr class="<{cycle values='odd,even'}>">
+	<td><b><{ $field }></b></td>
+	<td><{ $item }></td>
+ </tr>
+<{/foreach}>
+</table>
+&nbsp;
+
+<{if $page.missingfields }>
+<table cellpadding="4" cellspacing="1" class="outer" width="100%">
+<tr><td class="odd" width="150"><b><{ $smarty.const._NA_MISSINGFIELDS_NOTICE }></b></td>
+<td>
+	<{ foreach item=field from=$page.missingfields }>
+		<a href="<{$xoops_url}>/modules/<{$mod_dir}>/admin/form.php?op=sysfield&pfunc=add&lock=groupid&lockv=<{$page.item.groupid}>"><{ $field }></a> &nbsp;&nbsp;
+	<{/foreach}>
+</td></tr>
+<tr><td class="even" colspan="2"><span style="font-size: 9px"><{ $smarty.const._NA_MISSINGFIELDS_MSG }></span></td>
+</tr>
+</table>
+&nbsp;
+<{/if}>
+
+<{if $page.relation}>
+<table cellpadding="4" cellspacing="1" class="outer" width="100%">
+<tr><td class="odd" width="150"><b><{ $smarty.const._NA_RELATIONSHIPS_NOTICE }></b></td>
+<td>
+	<{foreach item=rel from=$page.relation}>
+		<a href="<{$xoops_url}>/modules/<{$mod_dir}>/admin/item.php?op=<{ $page.info.group_name }>&pfunc=open&id=<{ $page.info.itemid }>&rel=<{$rel.relationid}>">
+		<{ $rel.group_label }></a> &nbsp;&nbsp;
+	<{/foreach}>
+</td></tr>
+<tr><td class="even" colspan="2"><span style="font-size: 9px"><{ $smarty.const._NA_RELATIONSHIPS_MSG }></span></td>
+</tr>
+</table>
+&nbsp;
+<{/if}>
+
+<{if $page.sub }>
+
+<{* THE FOLLOWING IS A CLONE OF LISTDEFAULT.HTML *}>
+<{* just easier this way *}>
+
+<table cellpadding="0" cellspacing="1">
+<tr>
+<td class="head" >
+<nobr><a href="<{$xoops_url}>/modules/<{$mod_dir}>/admin/listform.php?op=<{$page.relation.0.group_name}>&lock=<{$page.relation.0.jn_field}>&lockv=<{$page.relation.0.match_value}>"><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_edit.gif">Edit These Items</a>&nbsp;&nbsp;</nobr>
+</td>
+<td class="even"><span style="font-size: 9px"><b><{ $smarty.const._NA_DEFAULTLIST_NOTICE }></b> <{ $smarty.const._NA_DEFAULTLIST_MSG }></span></td>
+</tr>
+</table>
+<table width="100%" class="outer" cellpadding="3" cellspacing="1" border="0">
+<tr>
+	<td class="even">&nbsp;  </td>
+ <{foreach item=col from=$page.sub.columns.col }>
+ 	<td class="even"><b><{ $col.fieldlabel }></b></td>
+ <{/foreach}>
+</tr>
+<{foreach item=row from=$page.sub.list }>
+	<tr class="<{cycle values='odd,'}>">
+		<td><nobr>
+			<a href="<{$xoops_url}>/modules/<{$mod_dir}>/admin/item.php?op=<{$page.sub.info.name}>&pfunc=open&id=<{$row.rowid}>"><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_open.gif" border="0"></a>&nbsp;
+			<a href="<{$xoops_url}>/modules/<{$mod_dir}>/admin/form.php?op=<{$page.sub.info.name}>&pfunc=edit&id=<{$row.rowid}>"><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_edit.gif"></a>&nbsp;
+			<a href="<{$xoops_url}>/modules/<{$mod_dir}>/admin/trash.php?op=<{$page.sub.info.name}>&pfunc=trash&id=<{$row.rowid}>"><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_trash.gif"></a>&nbsp;
+			</nobr>
+		</td>
+	<{foreach key=key item=item from=$row }>
+	<{if $key != 'rowid' }>
+		<td><{$item}></td>
+	<{/if}>
+	<{/foreach}>
+	</tr>
+<{/foreach}>
+</table><{/if}>
+
+<{* END DEFAULT FORM *}>
+<{/if}>

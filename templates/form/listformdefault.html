@@ -1,0 +1,41 @@
+<form name="<{$listform.name}>" action="<{$listform.action}>" method="<{$listform.method}>">
+<{foreach item=item key=key from=$listform.elements }>
+ <{if $item.hidden }><{ $item.body }><{/if}>
+<{/foreach}>
+<{if $page.paginate }>
+	<{include file="db:noah_paginate.html"}>
+<{/if}>
+<table cellpadding="0" cellspacing="1">
+<tr>
+<td class="head" >
+<nobr><a href="<{$xoops_url}>/modules/<{$mod_dir}>/admin/list.php?op=<{$page.info.group_name}>&p=<{$page.paginate.page}>"><img src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_list.gif">List View</a>&nbsp;&nbsp;</nobr>
+</td>
+<td class="even"><span style="font-size: 9px"><b><{ $smarty.const._NA_DEFAULTFORM_NOTICE }></b> <{ $smarty.const._NA_DEFAULTFORM_MSG }></span></td>
+</tr>
+</table>
+<table cellpadding="4" cellspacing="1" class="outer" width="100%">
+<tr>
+ <{foreach item=col from=$page.columns.col }>
+ 	<td class="even"><b><{ $col.fieldlabel }></b></td>
+ <{/foreach}>
+</tr>	
+<{foreach item=item key=key from=$listform.elements }>
+ <{if ! $item.hidden }>
+ <tr class="<{cycle values='odd,even'}>">
+	<{if $item.name == 'submit'}>
+	<td colspan="<{$page.info.lf_count}>">
+	<{else}>
+	<td>
+	<{/if}>
+	<{ $item.body }> 
+	<span style="color: red;"><{if $item.extra }><{ $item.extra }><{/if}></span>
+	</td>
+ </tr>
+ <{/if}>
+<{/foreach}>
+</table>
+<{if $page.paginate }>
+	<{include file="db:noah_paginate.html"}>
+<{/if}>
+</form>
+

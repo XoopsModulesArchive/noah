@@ -1,0 +1,62 @@
+
+<{if ! $page.confirm_trash}>
+
+
+<{include file="db:admin/mainmenu.html"}>
+
+
+<span style="font-size:16px">
+<b><{$page.title}></b>
+</span>
+
+
+<{if $page.list }>
+
+	<{if $listform }>
+		<{include file="db:form/listformdefault.html"}>
+	<{else}>
+		<{include file="db:list/listdefault.html"}>
+	<{/if}>
+
+<{/if}>
+
+<{if $page.item }>
+	<{include file="db:item/itemdefault.html"}>
+<{/if}>
+
+<{if $pageform }>
+	<{include file="db:form/formdefault.html"}>
+<{/if}>
+
+<{if $page.groupsmenu }>
+<{include file="db:admin/home.html"}>
+<{include file="db:noah_icon_legend.html"}>
+<{/if}>
+
+
+<{else}>
+
+&nbsp;<br />
+<form name="<{ $conform.name }>" action="<{ $conform.action }>" method="<{ $conform.method }>">
+	<table cellpadding="25" cellspacing="1" width="80%" align="center" class="outer">
+	 <tr>
+	  <td class="odd" align="center">
+	  <b><{$page.confirm_trash}></b><br/>
+	  <{ $conform.elements.confirm.body}>
+	  <{ $conform.elements.op.body}>
+	  <{ $conform.elements.itemid.body}>
+	  <{ $conform.elements.submit.body}>	
+	  </td>
+	 </tr>
+	</table>
+</form>
+	<table cellpadding="25" cellspacing="1" width="80%" align="center">
+    <{foreach item=item key=key from=$page.item }>
+	<tr>
+	 <td class="odd"><b><{$key}></b></td>
+	 <td class="even"><b><{$item}></b></td>
+	</tr>
+	<{/foreach}>
+	</table>
+
+<{/if}>

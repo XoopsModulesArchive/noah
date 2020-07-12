@@ -1,0 +1,7 @@
+<{foreach key=key item=type from=$page.groupsmenu }>
+ <p><b><{$key}></b></p>
+	<{foreach item=group from=$type}>
+	<a href="<{$xoops_url}>/modules/<{$mod_dir}>/admin/item.php?op=sysgroups&id=<{$group.groupid}>"><img align="absmiddle" src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_open.gif" border="0"></a>&nbsp;<a href="<{$xoops_url}>/modules/<{$mod_dir}>/admin/form.php?op=<{$group.group_name}>&pfunc=add"><img align="absmiddle" src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_add.gif"></a>&nbsp;<a href="<{$xoops_url}>/modules/<{$mod_dir}>/admin/list.php?op=<{$group.group_name}>"><img align="absmiddle" src="<{$xoops_url}>/modules/<{$mod_dir}>/images/na_ico_list.gif">&nbsp;<{$group.group_label}></a><br />
+	<{/foreach}>
+<{/foreach}>
+

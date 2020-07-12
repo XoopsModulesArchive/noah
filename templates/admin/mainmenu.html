@@ -1,0 +1,74 @@
+<style type="text/css" media="screen">
+#admintab {
+  float:left;
+  width:100%;
+  background:#DAE0D2 url("<{$xoops_url}>/modules/noah/images/bg.gif") repeat-x bottom;
+  font-size:93%;
+  line-height:normal;
+  }
+#admintab ul {
+  margin:0;
+  padding:10px 10px 0;
+  list-style:none;
+  }
+#admintab li {
+  float:left;
+  background:url("<{$xoops_url}>/modules/noah/images/left.gif") no-repeat left top;
+  margin:0;
+  padding:0 0 0 9px;
+  list-style:none;
+ }
+#admintab a {
+  float:left;
+  display:block;
+  background:url("<{$xoops_url}>/modules/noah/images/right.gif") no-repeat right top;
+  padding:5px 15px 4px 6px;
+  text-decoration:none;
+  font-weight:bold;
+  color:#765;
+  }
+/* Commented Backslash Hack
+   hides rule from IE5-Mac \*/
+#admintab a {float:none;}
+/* End IE5-Mac hack */
+#admintab a:hover {
+  color:#333;
+  }
+#admintab #current {
+  background-image:url("<{$xoops_url}>/modules/noah/images/left_on.gif");
+  }
+#admintab #current a {
+  background-image:url("<{$xoops_url}>/modules/noah/images/right_on.gif");
+  color:#333;
+  padding-bottom:5px;
+  }
+
+#admintab #rightside {
+  float:right;
+  background:none;
+  }
+
+</style>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><div id="admintab">
+  <ul>
+    <{foreach item=tab key=key from=$tabs.tabs}>
+     <li id="<{if $tab.current == 1 }>current<{/if}>"><a href="<{$tab.link}>"><{$tab.label}></a></li>
+	<{/foreach}>
+	<li id="rightside">No-Ah 8.6</li>
+  </ul>
+</div></td>
+  </tr>
+  <tr>
+    <td height="30">
+	<div>&nbsp; &nbsp; 
+	<{foreach name=sublink key=key item=sub from=$tabs.subs}>
+		<A HREF="<{$sub.link}>"><{$sub.label}></A> &nbsp;
+		<{if ! $smarty.foreach.sublink.last }>|<{/if}> &nbsp;	
+	<{/foreach}></div>
+	</td>
+  </tr>
+</table>
